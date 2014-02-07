@@ -1,5 +1,5 @@
- SMAB: Statusrapport 19/12
-===========================
+ SMAB: Statusrapport 7/2
+=========================
 
 
 ## Sales pitch
@@ -13,10 +13,11 @@
 
   Vi ska skapa ett system för att styra färgade lampor som ska sitta i
   fönster så att byggnaden blir en enorm skärm.  Skärmen ska kunna visa
-  animationer och användas för att spela spel.  Animationerna ska enkelt kunna
-  koreograferas med musik.  När skärmen är i spelläge så kan spelare ställa
-  sig i en kö i ett webbgränssnitt, där de sedan eventuellt paras ihop med
-  andra spelare för att kunna spela ett spel.
+  animationer och användas för att spela spel.  Det ska gå att i ett senare
+  skede koppla elektroniska instrument (exempelvis synth) så att de utöver
+  att spela upp ljud också ändrar lamporna.  När skärmen är i spelläge så kan
+  spelare ställa sig i en kö i ett webbgränssnitt, där de sedan eventuellt
+  paras ihop med andra spelare för att kunna spela ett spel.
 
 
 ## Mål
@@ -28,15 +29,14 @@
   tidsfördröjning av videoströmmen.  Libido ska kunna ställa in vilket spel
   som användarna kan spela samt om det istället ska visas en animation på
   husfasaden samt hur denna animation ser ut.  Vi har också som mål att man i
-  framtiden kan utvidga projektet för att hantera bygnader med speciella
+  framtiden kan utvidga projektet för att hantera byggnader med speciella
   former.  Under detta projekt begränsar vi oss dock till rektangulära
   fasader.
 
 
 ## Förutsättningar (externa)
 
-  * Vi måste använda lampor (troligtvis Hue eller Tellstick) som ska belysa
-    fönstrena inifrån.
+  * Vi måste använda lampor (troligtvis Hue) som ska belysa fönstren inifrån.
   * Interaktiv display.
   * Kösystem för spelare när de väntar.
   * Videoström av byggnaden som spelklienter kan se.
@@ -53,7 +53,7 @@
   * Utveckling: Alla
 
 
-## Gruppbeskrivning
+## Utvecklingsmetod
 
   Vi har bestämt oss för att jobba enligt den agila utvecklingsmetoden Scrum
   efter att ha jämfört olika metoder gäntemot varandra och mot de
@@ -81,22 +81,24 @@
 
 ### Aktiviteter
 
+  * Utveckla lampserver
+    - Implementera JSON-API
+
+  * Utveckla spelbackend
+    - API för spelmoduler
+    - Implementera tic-tac-toe som spelmodul
+    - Implementera fyra-i-rad
+
+  * Utveckla spelfrontend
+    - Sätta upp websocket-kommunikation
+
+  * Utveckla kösystem
+
   * Utvärdera
-    - Webbackendalternativ
-    - "APIer"/kommunikationsvägar för Tellstick
-    - APIer för Hue
-    - Möjlighet att bädda in videoström i frontend (existerande
-      streamingtjänster? Youtube?)
-
-  * Producera komponenter
-    - Lampserver
-    - Webbserver-backend
-    - Konfigurationsgränssnitt
-    - Kö- och spelfrontend
-
-  * API mellan lamp- och webbserver
-
-  * Webbkamerabryggning till spelfrontend
+    - Lampteknik (lampräckvidd mm)
+    - Möjlighet att använda GIF
+    - Design av eget filformat?
+    - Inbäddning av videoström i spelfrontend
 
 
 ### Beroendegraf mellan komponenter
@@ -105,21 +107,11 @@
 
 
 ### Milstolpar (och tidsplan)
-* MS1 (December 2013)
-  - [meta] Förstudie klar.
-  - [lampor] Testprogram som styr Tellstick.
 
-* MS2 (Januari 2014)
-  - [config] Början på UI för konfigurering av animationer/spel
-  - [lampor] Testprogram som styr Hue.
-  - [lampor] Början på lampserverkod.
-  - [lampor] Design av API/protokoll för kommunikation webbserver-lampserver
-    klar.
-  - [frontend] Början på UI för kösystem/spel.
+Resterande milstolpar under projektets gång redovisas nedan.  Milstolparna
+MS1 och MS2 har redan uppnåtts.
 
 * MS3 (Februari 2014)
-  - [config] Stöd för: konfigurera enklare animationer, spela upp i
-    gränssnittet.
   - [lampor] Lampserver kan styra bryggor och lampor för att ändra specifika
     lampor.
   - [webserver] Fungerande kösystem med turordning.
@@ -131,61 +123,39 @@
     möjlighet att spara inställningar till server.
   - [frontend] Fungerande spelgränssnitt, frontend klar.
 
-* Att planera
-  - Testning (animationer, synkronisering till musik, videoström i
-    spelgränssnitt, load på kösystem, allmänt försöka paja kö- och
-    spelgränssnittet).
-
 Planeringen är preliminär, och är tänkt att ta hänsyn till vilka uppgifter som
 beror på vilka, och potentiella risker som är associerade med olika moment.
 
 
 ## Research
 
-Då den utrustning vi jobbar med är begränsad i antal behöver vi skapa en
-gemensam testplats som vi alla kan nå utifrån. För att kunna göra detta har vi
-behövt dels se till att vi faktiskt kan kontrollera utrustningen
-programmatiskt, men också förbereda utrustning för att kunna skicka video från
-testplatsen. Utrustningen vi har arbetat med är Telldus TellStick tillsammans
-med ett antal strömbrytare som kan kontrolleras trådlöst, och för att kunna nå
-testplatsen utifrån bestämde vi oss för att använda en Raspberry Pi kopplad
-till en webbkamera. Vi har lärt oss att:
+Vi har satt upp en gemensam testplats och en testrigg med nio lampor.  Riggen
+är i KTHs lokaler, och vi har satt upp en kamera som streamar lampornas status.
+Tellsticktekniken återanvänds för att kontrollera eltillförseln till riggen, så
+att lamporna kan stängas av när de inte används.  Lamporna kan kontrolleras
+utifrån, vilket gör det möjligt att testa ändringar utifrån.
 
-  * Den nätverksbaserade TellStick-modellen kan vanligtvis endast kontrolleras
-    programmatiskt via ett online-API, som kräver att TellSticken är
-    uppkopplad till Internet. Genom att installera en alternativ firmware blev
-    det dock möjligt att kommunicera direkt med TellSticken över det lokala
-    nätverket.
+Efter att ha utvärderat Hue-lamporna så har vi kommit fram till att dessa är
+betydligt bättre lämpade för vårt ändamål än tekniken Tellstick.  Fördelar med
+Hue-tekniken är bland annat bättre stabilitet, starkare lampor, bättre stöd för
+olika färger samt färdiga APIer som vi kan kommunicera med.  Vi har beslutat oss
+för att skriva backenden i Python, och har implementerat kod för att kommunicera
+med Hues lampservrar över HTTP via deras REST-API som använder JSON.
 
-  * Strömbrytarna är opålitliga, på så sätt att de ofta inte reagerar när
-    TellSticken skickar en signal. Dessutom verkar TellSticken i sig vara
-    väldigt långsam, då det kan vara uppemot en halv sekunds paus mellan två
-    signaler. Vi har därför bedömt att TellSticken antagligen inte är lämplig
-    för mer avancerade animationer, såvida inte varje strömbrytare får en egen
-    TellStick.
+Som nämndes ovan så implementeras webbackenden i Python, mer specifikt har vi
+bestämt oss för webbserverbiblioteket Tornado.  Detta beslut grundar sig på att
+Tornado enligt jämförelser och designfilosofi har som mål att klara höga
+belastningar samt bra inbyggt stöd för tekniker så som twebsockets som vi ämnar
+att använda.
 
-  * Raspberry Pi:n verkar inte stödja den webbkamera som vi hade planerat att
-    använda. Vi kommer att bli tvungna att försöka med någon annan webbkamera,
-    och om inte det fungerar kan vi bli tvungna att försöka hitta en annan,
-    större server.
-
-Som en alternativ till TellStick kommer vi enligt vår klients önskemål att
-utforska Philips Hue. Medan den faktiska utrustningen ännu inte har anlänt,
-har vi dock börjat titta på olika API:er för att sköta kommunikation med
-Hue-bryggorna. Eftersom att vi kommer behöva kunna kommunicera med flera
-bryggor samtidigt för att kunna uppnå tillräcklig räckvidd har vi primärt
-tittat på API:er som har inbyggt stöd för kommunikation med flera bryggor.
-Detta utesluter bland annat Philips egna officiella Java-API, vilket innebär
-att vi istället har fått titta på alternativa tredjeparts-API:er. Vi har tills
-vidare främst tittat på Python-baserade API:er, då vi redan använder Python på
-annat håll i projektet. När Hue-lamporna anländer kommer vi att testa bland
-annat pålitlighet, snabbhet och räckvidd för bryggorna.
-
-Vad gäller webbservern har vi tittat på några olika Python-lösningar för att
-bygga webbapplikationer. De vi tittat på är främst Django, Tornado och
-CherryPy. För varje ramverk har vi byggt en simpel testapplikation för att få
-en uppfattning av hur de fungerar. Vi har dock inte bestämt oss för vilket
-ramverk vi ska använda ännu.
+Vi har börjat undersöka idén att använda GIF-animationer för lagring av våra
+animationer, där tanken är att vi slipper skriva ett eget verktyg för att
+skapa animationer om det redan finns kompetenta sådana.  Istället tänker vi
+lägga större vikt på lampserverkomponenten och att få animationer att
+synkroniseras bra.  Vi har kollat på ett par olika animationsverktyg och
+konstaterat att det verkar finnas tillräckligt bra sådana tillgängliga.  En
+del tekniska bekymmer kvarstår, så som skillnaden på färgspektrum för GIF
+och våra Hue-lampor.  Vidare studier inom detta område behöver göras.
 
 
 ## Scenarier, krav och behov
@@ -211,19 +181,21 @@ kan på ett enkelt sätt spela något spel.
 Användaren måste kunna
 
   * Skapa en animation
-    - Synkroniserat med musik.
-    - Tänder lampor i olika färger och styrkor (beroende på teknik)
-    - Sätta färg, styrka, duration på lampor.
+    - Tänder lampor i olika färger och styrkor
+    - Sätta färg, styrka, tidsfördröjning på lampor.
 
   * Spela enkla spel
-    - Minst ett spel. Tick-tack-toe, 4-i-rad...
-    - Med/mot varandra (och singleplayer?)
+    - Minst ett spel. Tic-tac-toe, 4-i-rad...
+    - Mot varandra
     - Spelare hamnar i en kö
 
-  * Libido/byggnadsägaren ska ha möjlighet att enkelt administrera saken.
-    - Byta spel samt konfigurera
+  * Libido/byggnadsägaren ska ha möjlighet att enkelt administrera
+    installationen.
+    - Byta spel samt konfigurera färgval
     - Byta animation
     - Skärmsläckare (dvs animation) om ingen spelar?
+
+Se även tidigare avsnitt om projektets externa förutsättningar.
 
 
 ### Behov
@@ -231,12 +203,12 @@ Användaren måste kunna
 Inte absolut kritiskt, men trevligt i mån av tid.
 
   * Stödjer olika former på fasader.
-  * Kan spara en ljusshow till fil så man kan skicka omkring den.
+
   * Automatisk hopkoppling om vart lamporna är
     - Tror dock detta blir onödigt svårt och lättare att bara säga till
       installören: “Sätt lampan med id 1 där!”
     - Testshow, som lyser upp lamporna i id-ordningen. Då kan man enkelt se om
-      något har hamnat fel i installationen. 
+      något har hamnat fel i installationen.
 
 
 ## Teknologi/arkitektur
@@ -251,11 +223,8 @@ byggnaden där lamporna är installerade.
 
 Detta innebär att det behövs någon sorts webbserver som har som funktion att
 skicka individuella sidor till användaren, samt som hanterar kö- och
-spellogiken. Vi har bestämt oss för att använda Python genom
-uteslutningsmetoden: språk som C++, Java och Haskell ansågs något opassande
-för ändamålet, och PHP fick högljudd kritik från vissa gruppmedlemmar. Kvar
-var språk som Python, JavaScript (node.js) och Ruby, och då gruppen kollektivt
-verkade ha mer erfarenhet av Python blev det vårt val. 
+spellogiken. Vi har bestämt oss för att använda Python, se diskussion under
+Research tidigare i dokumentet.
 
 Vi behöver också någon komponent så hanterar kommunikation med de bryggor som
 i sin tur kommunicerar direkt med lamporna. Vi ansåg att det vore lämpligt att
@@ -263,7 +232,8 @@ implementera webbkomponenten och lampkommunikationskomponenten som två
 separata servrar.
 
 Då vi behöver kunna visa livevideo från byggnaden kommer vi också att behöva
-kunna kommunicera med någon server som är kopplad till en kamera.
+kunna kommunicera med någon server som är kopplad till en kamera.  Detta är
+tänkt att ske via en streamingtjänst, exempelvis Bambuser.
 
 
   [TODO: bild]
@@ -273,7 +243,7 @@ kunna kommunicera med någon server som är kopplad till en kamera.
 
 Risk | Åtgärd | Sann. | Impact
 -----|--------|-------|----------
-Kommunikation mellan bryggor och lampor är opålitlig (väldigt stor fördröjning, tappar signaler, etc.) | Fixa eventuella buggar; Använda fler bryggor vid behov | Hög | Hög
+Kommunikation mellan bryggor och lampor är opålitlig (väldigt stor fördröjning, tappar signaler, etc.) | Fixa eventuella buggar; Använda fler bryggor vid behov; Programmera egen brygga | Hög | Hög
 Kommunikation mellan lampservern och bryggorna är bristfällig (för långsam/opålitlig) | Fixa eventuella buggar; Fixa diverse tekniska problem med anslutning | Medel | Hög
 Lamporna stör varandra när de har olika färger (t.ex. två fönster inom samma rum) | Skärmar mellan lamporna; Begränsa så att lampor i samma rum alltid har samma färg | Låg | Medel
 Problem med ihopkopplingen av delsystem(lamp- och webbserver etc.) (interna protokoll matchar inte, inkorrekt data, etc.) | Fixa eventuella buggar | Medel | 11/10
