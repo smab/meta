@@ -103,7 +103,7 @@
 
 ### Beroendegraf mellan komponenter
 
-  [TODO: bild]
+  ![Komponentberoendegraf](https://github.com/smab/meta/raw/master/deliverable/task-dependencies.png)
 
 
 ### Milstolpar (och tidsplan)
@@ -129,51 +129,51 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
 
 ## Research
 
-Vi har satt upp en gemensam testplats och en testrigg med nio lampor.  Riggen
-är i KTHs lokaler, och vi har satt upp en kamera som streamar lampornas status.
-Tellsticktekniken återanvänds för att kontrollera eltillförseln till riggen, så
-att lamporna kan stängas av när de inte används.  Lamporna kan kontrolleras
-utifrån, vilket gör det möjligt att testa ändringar utifrån.
+  Vi har satt upp en gemensam testplats och en testrigg med nio lampor.  Riggen
+  är i KTHs lokaler, och vi har satt upp en kamera som streamar lampornas status.
+  Tellsticktekniken återanvänds för att kontrollera eltillförseln till riggen, så
+  att lamporna kan stängas av när de inte används.  Lamporna kan kontrolleras
+  utifrån, vilket gör det möjligt att testa ändringar utifrån.
 
-Efter att ha utvärderat Hue-lamporna så har vi kommit fram till att dessa är
-betydligt bättre lämpade för vårt ändamål än tekniken Tellstick.  Fördelar med
-Hue-tekniken är bland annat bättre stabilitet, starkare lampor, bättre stöd för
-olika färger samt färdiga APIer som vi kan kommunicera med.  Vi har beslutat oss
-för att skriva backenden i Python, och har implementerat kod för att kommunicera
-med Hues lampservrar över HTTP via deras REST-API som använder JSON.
+  Efter att ha utvärderat Hue-lamporna så har vi kommit fram till att dessa är
+  betydligt bättre lämpade för vårt ändamål än tekniken Tellstick.  Fördelar med
+  Hue-tekniken är bland annat bättre stabilitet, starkare lampor, bättre stöd för
+  olika färger samt färdiga APIer som vi kan kommunicera med.  Vi har beslutat oss
+  för att skriva backenden i Python, och har implementerat kod för att kommunicera
+  med Hues lampservrar över HTTP via deras REST-API som använder JSON.
 
-Som nämndes ovan så implementeras webbackenden i Python, mer specifikt har vi
-bestämt oss för webbserverbiblioteket Tornado.  Detta beslut grundar sig på att
-Tornado enligt jämförelser och designfilosofi har som mål att klara höga
-belastningar samt bra inbyggt stöd för tekniker så som twebsockets som vi ämnar
-att använda.
+  Som nämndes ovan så implementeras webbackenden i Python, mer specifikt har vi
+  bestämt oss för webbserverbiblioteket Tornado.  Detta beslut grundar sig på att
+  Tornado enligt jämförelser och designfilosofi har som mål att klara höga
+  belastningar samt bra inbyggt stöd för tekniker så som twebsockets som vi ämnar
+  att använda.
 
-Vi har börjat undersöka idén att använda GIF-animationer för lagring av våra
-animationer, där tanken är att vi slipper skriva ett eget verktyg för att
-skapa animationer om det redan finns kompetenta sådana.  Istället tänker vi
-lägga större vikt på lampserverkomponenten och att få animationer att
-synkroniseras bra.  Vi har kollat på ett par olika animationsverktyg och
-konstaterat att det verkar finnas tillräckligt bra sådana tillgängliga.  En
-del tekniska bekymmer kvarstår, så som skillnaden på färgspektrum för GIF
-och våra Hue-lampor.  Vidare studier inom detta område behöver göras.
+  Vi har börjat undersöka idén att använda GIF-animationer för lagring av våra
+  animationer, där tanken är att vi slipper skriva ett eget verktyg för att
+  skapa animationer om det redan finns kompetenta sådana.  Istället tänker vi
+  lägga större vikt på lampserverkomponenten och att få animationer att
+  synkroniseras bra.  Vi har kollat på ett par olika animationsverktyg och
+  konstaterat att det verkar finnas tillräckligt bra sådana tillgängliga.  En
+  del tekniska bekymmer kvarstår, så som skillnaden på färgspektrum för GIF
+  och våra Hue-lampor.  Vidare studier inom detta område behöver göras.
 
 
 ## Scenarier, krav och behov
 
 ### Scenarier
 
-Glenn ska inviga en byggnad i centrala Göteborg och vill ha något spektakulärt
-Han bestämmer sig för att anlita Libido Music för att installera lampor och
-göra någon cool show. Libido kommer och installerar lampor i Glenns byggnad
-samt gör en demo. Showen görs av Libido hos deras kontor vid Karlaplan och
-visas på något sätt upp på invigningsdagen.
+  Glenn ska inviga en byggnad i centrala Göteborg och vill ha något spektakulärt
+  Han bestämmer sig för att anlita Libido Music för att installera lampor och
+  göra någon cool show. Libido kommer och installerar lampor i Glenns byggnad
+  samt gör en demo. Showen görs av Libido hos deras kontor vid Karlaplan och
+  visas på något sätt upp på invigningsdagen.
 
-Karl-Bertil går förbi en cool byggnad i stan med massa lampor på. Han ser en
-liten informationsskylt framför byggnaden som säger att om han går in på
-example.com så kan han spela ett spel där han använder byggnaden som en stor
-skärm. Han skriver in addressen och hamnar i en kö. Det står att han har plats
-10 av 11.  Till slut kommer han att paras ihop med någon annan spelare och de
-kan på ett enkelt sätt spela något spel.
+  Karl-Bertil går förbi en cool byggnad i stan med massa lampor på. Han ser en
+  liten informationsskylt framför byggnaden som säger att om han går in på
+  example.com så kan han spela ett spel där han använder byggnaden som en stor
+  skärm. Han skriver in addressen och hamnar i en kö. Det står att han har plats
+  10 av 11.  Till slut kommer han att paras ihop med någon annan spelare och de
+  kan på ett enkelt sätt spela något spel.
 
 
 ### Krav
@@ -213,27 +213,27 @@ Inte absolut kritiskt, men trevligt i mån av tid.
 
 ## Teknologi/arkitektur
 
-Vår applikation har två sorters användare: dels vår klient, som behöver kunna
-skapa animationer etc., och dels vanliga personer som ansluter via en
-webbläsare för att spela. För att kunna hantera flera spelare implementerar vi
-ett kösystem, då det inte går att spela flera spelomgångar samtidigt. När en
-spelare har nått längst fram i kön kommer spelaren att få se något gränssnitt
-där den kan spela själva spelet samt livevideo som visar den faktiska
-byggnaden där lamporna är installerade.
+  Vår applikation har två sorters användare: dels vår klient, som behöver kunna
+  skapa animationer etc., och dels vanliga personer som ansluter via en
+  webbläsare för att spela. För att kunna hantera flera spelare implementerar vi
+  ett kösystem, då det inte går att spela flera spelomgångar samtidigt. När en
+  spelare har nått längst fram i kön kommer spelaren att få se något gränssnitt
+  där den kan spela själva spelet samt livevideo som visar den faktiska
+  byggnaden där lamporna är installerade.
 
-Detta innebär att det behövs någon sorts webbserver som har som funktion att
-skicka individuella sidor till användaren, samt som hanterar kö- och
-spellogiken. Vi har bestämt oss för att använda Python, se diskussion under
-Research tidigare i dokumentet.
+  Detta innebär att det behövs någon sorts webbserver som har som funktion att
+  skicka individuella sidor till användaren, samt som hanterar kö- och
+  spellogiken. Vi har bestämt oss för att använda Python, se diskussion under
+  Research tidigare i dokumentet.
 
-Vi behöver också någon komponent så hanterar kommunikation med de bryggor som
-i sin tur kommunicerar direkt med lamporna. Vi ansåg att det vore lämpligt att
-implementera webbkomponenten och lampkommunikationskomponenten som två
-separata servrar.
+  Vi behöver också någon komponent så hanterar kommunikation med de bryggor som
+  i sin tur kommunicerar direkt med lamporna. Vi ansåg att det vore lämpligt att
+  implementera webbkomponenten och lampkommunikationskomponenten som två
+  separata servrar.
 
-Då vi behöver kunna visa livevideo från byggnaden kommer vi också att behöva
-kunna kommunicera med någon server som är kopplad till en kamera.  Detta är
-tänkt att ske via en streamingtjänst, exempelvis Bambuser.
+  Då vi behöver kunna visa livevideo från byggnaden kommer vi också att behöva
+  kunna kommunicera med någon server som är kopplad till en kamera.  Detta är
+  tänkt att ske via en streamingtjänst, exempelvis Bambuser.
 
 
   [TODO: bild]
