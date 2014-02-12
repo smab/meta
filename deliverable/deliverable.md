@@ -129,24 +129,26 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
 
 ## Research
 
-  Vi har satt upp en gemensam testplats och en testrigg med nio lampor.  Riggen
-  är i KTHs lokaler, och vi har satt upp en kamera som streamar lampornas status.
-  Tellsticktekniken återanvänds för att kontrollera eltillförseln till riggen, så
-  att lamporna kan stängas av när de inte används.  Lamporna kan kontrolleras
-  utifrån, vilket gör det möjligt att testa ändringar utifrån.
+  Vi har satt upp en gemensam testplats och en testrigg med nio lampor.
+  Riggen är i KTHs lokaler, och vi har satt upp en kamera som streamar
+  lampornas status.  Tellsticktekniken återanvänds för att kontrollera
+  eltillförseln till riggen, så att lamporna kan stängas av när de inte
+  används.  Lamporna kan kontrolleras utifrån, vilket gör det möjligt att
+  testa ändringar utifrån.
 
   Efter att ha utvärderat Hue-lamporna så har vi kommit fram till att dessa är
-  betydligt bättre lämpade för vårt ändamål än tekniken Tellstick.  Fördelar med
-  Hue-tekniken är bland annat bättre stabilitet, starkare lampor, bättre stöd för
-  olika färger samt färdiga APIer som vi kan kommunicera med.  Vi har beslutat oss
-  för att skriva backenden i Python, och har implementerat kod för att kommunicera
-  med Hues lampservrar över HTTP via deras REST-API som använder JSON.
+  betydligt bättre lämpade för vårt ändamål än tekniken Tellstick.  Fördelar
+  med Hue-tekniken är bland annat bättre stabilitet, starkare lampor, bättre
+  stöd för olika färger samt färdiga APIer som vi kan kommunicera med.  Vi har
+  beslutat oss för att skriva backenden i Python, och har implementerat kod
+  för att kommunicera med Hues lampservrar över HTTP via deras REST-API som
+  använder JSON.
 
-  Som nämndes ovan så implementeras webbackenden i Python, mer specifikt har vi
-  bestämt oss för webbserverbiblioteket Tornado.  Detta beslut grundar sig på att
-  Tornado enligt jämförelser och designfilosofi har som mål att klara höga
-  belastningar samt bra inbyggt stöd för tekniker så som twebsockets som vi ämnar
-  att använda.
+  Som nämndes ovan så implementeras webbackenden i Python, mer specifikt har
+  vi bestämt oss för webbserverbiblioteket Tornado.  Detta beslut grundar sig
+  på att Tornado enligt jämförelser och designfilosofi har som mål att klara
+  höga belastningar samt bra inbyggt stöd för tekniker så som websockets som
+  vi ämnar att använda.
 
   Vi har börjat undersöka idén att använda GIF-animationer för lagring av våra
   animationer, där tanken är att vi slipper skriva ett eget verktyg för att
@@ -198,17 +200,22 @@ Användaren måste kunna
 Se även tidigare avsnitt om projektets externa förutsättningar.
 
 
-### Behov
+### I mån av tid
 
-Inte absolut kritiskt, men trevligt i mån av tid.
+  * Stöd för olika form på fasader
+    - I dagsläget förutsätter vi rektangulära husfasader, men i praktiken kan
+      många aktuella hus ha ickerektangulär fasad.  I sådana fall är det
+      önskvärt att på något sätt kunna ange utseendet på fasaden.
 
-  * Stödjer olika former på fasader.
-
-  * Automatisk hopkoppling om vart lamporna är
-    - Tror dock detta blir onödigt svårt och lättare att bara säga till
-      installören: “Sätt lampan med id 1 där!”
-    - Testshow, som lyser upp lamporna i id-ordningen. Då kan man enkelt se om
-      något har hamnat fel i installationen.
+  * Förenkla hopkoppling mellan lampor och bryggor
+    - Idag behöver man koppla samman lampor med bryggor genom att skruva i en
+      i taget och köra ett program mellan varje lampa.  Det skulle förenkla
+      installation av lampor i byggnad avsevärt om man kunde skruva i alla
+      lampor på en gång och sedan via ett gränssnitt mappa lamporna till
+      pixlar.
+    - För att verifiera att allt satts upp i rätt ordning vore det användbart
+      med ett testprogram som lyser upp lamporna enligt ett förbestämt
+      mönster, ex. rad för rad och kolumn för kolumn.
 
 
 ## Teknologi/arkitektur
@@ -223,8 +230,9 @@ Inte absolut kritiskt, men trevligt i mån av tid.
 
   Detta innebär att det behövs någon sorts webbserver som har som funktion att
   skicka individuella sidor till användaren, samt som hanterar kö- och
-  spellogiken. Vi har bestämt oss för att använda Python, se diskussion under
-  Research tidigare i dokumentet.
+  spellogiken. Vi har bestämt oss för att använda Python tillsammans med
+  webbservermjukvaran Tornado, se diskussion under Research tidigare i
+  dokumentet.
 
   Vi behöver också någon komponent så hanterar kommunikation med de bryggor som
   i sin tur kommunicerar direkt med lamporna. Vi ansåg att det vore lämpligt att
@@ -241,16 +249,16 @@ Inte absolut kritiskt, men trevligt i mån av tid.
 
 ## Risker
 
-Risk | Åtgärd | Sann. | Impact
------|--------|-------|----------
-Kommunikation mellan bryggor och lampor är opålitlig (väldigt stor fördröjning, tappar signaler, etc.) | Fixa eventuella buggar; Använda fler bryggor vid behov; Programmera egen brygga | Hög | Hög
-Kommunikation mellan lampservern och bryggorna är bristfällig (för långsam/opålitlig) | Fixa eventuella buggar; Fixa diverse tekniska problem med anslutning | Medel | Hög
-Lamporna stör varandra när de har olika färger (t.ex. två fönster inom samma rum) | Skärmar mellan lamporna; Begränsa så att lampor i samma rum alltid har samma färg | Låg | Medel
-Problem med ihopkopplingen av delsystem(lamp- och webbserver etc.) (interna protokoll matchar inte, inkorrekt data, etc.) | Fixa eventuella buggar | Medel | 11/10
-Webbservern och/eller webbgränssnittet är instabila | Fixa eventuella buggar | Medel | Medel
-Webbservern får fler besökare än den kan hantera (överbelastning, stort intressen, DoS) | Köra webbserver i molnet (Amazon eller liknande); Optimera koden lite; Stäng av spel och spela animation istället (ej interaktiv dock); Iptables-magi? (droppa paket) | Låg | Medel
-Osynkade animationer (lampor byter färg i varierande hastigheter så att lamporna är i osynk med varandra) | Använda fler bryggor; Begränsa animationerna så att de inte är för beroende av perfekt synk | Medel | Medel
-Webbkamerastreaming fungerar dåligt (lamporna syns dåligt, dålig bildkvalitet, laggigt, ingen bild alls, kameran ramlar ner) | Fixa eventuella buggar; Bättre Internetuppkoppling; Bättre kamera; Bättre kamerainstallation | Medel | Medel
-Huset syns dåligt i webbkameran p.g.a väderleksförhållanden eller liknande, t.ex. regn eller dimma. | [Bättre väder][1]; Stänga av Playhouse när det är dålig sikt | Låg | Låg
+  Risk | Åtgärd | Sann. | Impact
+  -----|--------|-------|----------
+  Kommunikation mellan bryggor och lampor är opålitlig (väldigt stor fördröjning, tappar signaler, etc.) | Fixa eventuella buggar; Använda fler bryggor vid behov; Programmera egen brygga | Hög | Hög
+  Kommunikation mellan lampservern och bryggorna är bristfällig (för långsam/opålitlig) | Fixa eventuella buggar; Fixa diverse tekniska problem med anslutning | Medel | Hög
+  Lamporna stör varandra när de har olika färger (t.ex. två fönster inom samma rum) | Skärmar mellan lamporna; Begränsa så att lampor i samma rum alltid har samma färg | Låg | Medel
+  Problem med ihopkopplingen av delsystem(lamp- och webbserver etc.) (interna protokoll matchar inte, inkorrekt data, etc.) | Fixa eventuella buggar | Medel | 11/10
+  Webbservern och/eller webbgränssnittet är instabila | Fixa eventuella buggar | Medel | Medel
+  Webbservern får fler besökare än den kan hantera (överbelastning, stort intressen, DoS) | Köra webbserver i molnet (Amazon eller liknande); Optimera koden lite; Stäng av spel och spela animation istället (ej interaktiv dock); Iptables-magi? (droppa paket) | Låg | Medel
+  Osynkade animationer (lampor byter färg i varierande hastigheter så att lamporna är i osynk med varandra) | Använda fler bryggor; Begränsa animationerna så att de inte är för beroende av perfekt synk | Medel | Medel
+  Webbkamerastreaming fungerar dåligt (lamporna syns dåligt, dålig bildkvalitet, laggigt, ingen bild alls, kameran ramlar ner) | Fixa eventuella buggar; Bättre Internetuppkoppling; Bättre kamera; Bättre kamerainstallation | Medel | Medel
+  Huset syns dåligt i webbkameran p.g.a väderleksförhållanden eller liknande, t.ex. regn eller dimma. | [Bättre väder][1]; Stänga av Playhouse när det är dålig sikt | Låg | Låg
 
 [1]: http://en.wikipedia.org/wiki/Weather_modification
