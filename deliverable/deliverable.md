@@ -262,3 +262,22 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   Huset syns dåligt i webbkameran p.g.a väderleksförhållanden eller liknande, t.ex. regn eller dimma. | [Bättre väder][1]; Stänga av Playhouse när det är dålig sikt | Låg | Låg
 
 [1]: http://en.wikipedia.org/wiki/Weather_modification
+
+
+# Appendix A: Skisser
+
+  I detta appendix inkluderas skisser på de olika gränssnitt olika typer av
+  användare kan se, som berör projektet.
+
+## Konfiguration
+
+  ![Konfiguration](https://github.com/smab/meta/raw/master/deliverable/images/sketch-config.png)
+
+
+## Spel
+  Vi har just nu flera idéer på hur spelgränssnittet kan se ut.  Skisser på
+  desas inkluderas nedan.
+
+  ![Spelfrontend: förslag 1](https://github.com/smab/meta/raw/master/deliverable/images/sketch-game-1.png)
+
+  ![Spelfrontend: förslag 2](https://github.com/smab/meta/raw/master/deliverable/images/sketch-game-2.jpg)
