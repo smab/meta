@@ -244,7 +244,7 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   tänkt att ske via en streamingtjänst, exempelvis Bambuser.
 
 
-  [TODO: bild]
+  ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.svg)
 
 
 ## Risker
