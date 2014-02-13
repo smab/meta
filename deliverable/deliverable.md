@@ -253,34 +253,6 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.svg)
 
 
-## Dokumentation
-
-  Dokumentation av kodbasen görs successivt under utvecklingen, så att
-  framtida utvecklare kan ta över och fortsätta projektet.  Själva
-  arkitekturen och installation av komponenter måste också dokumenteras.
-  Dokumentation av arkitekturen finns i begränsad mån i detta dokument i
-  dagsläget, men bör migreras till ett separat dokument och göras mer
-  fullständig.
-
-  Detta är deliverable 3.  Rubrikerna Dokumentation och Träning är nya i denna
-  revision, och dokumentet har i allmänhet reviderats och uppdaterats för att
-  matcha förändringar i projektets förlopp och utveckling.
-
-
-## Träning
-
-  Vårt projekt involverar två sorters användare: de som installerar lamporna
-  och bestämmer vad som visas, och slutanvändare som interagerar med
-  installationen genom spel via en spelfrontend.  Det senare är
-  förhoppningsvis intuitivt (spelarna antas känna till reglerna för tre-i-rad
-  och fyra-i-rad).  Den förstnämnda gruppen behöver dock någon form av guide,
-  inte minst för installationen av lampor.  Det nuvarande systemet för
-  installation är temporärt; vi planerar att dokumentera uppsättningsprocessen
-  när vi har fått ett bättre system på plats.  Även hur man ställer in
-  animation och väljer spel bör dokumenteras, men för detta ändamål bör det
-  räcka med en relativt kort hjälptext i själva gränssnittet.
-
-
 ## Risker
 
   Risk | Åtgärd | Sann. | Impact
@@ -296,6 +268,34 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   Huset syns dåligt i webbkameran p.g.a väderleksförhållanden eller liknande, t.ex. regn eller dimma. | [Bättre väder][1]; Stänga av Playhouse när det är dålig sikt | Låg | Låg
 
 [1]: http://en.wikipedia.org/wiki/Weather_modification
+
+
+## Dokumentation
+
+  Dokumentation av kodbasen görs successivt under utvecklingen, så att
+  framtida utvecklare kan ta över och fortsätta projektet.  Själva
+  arkitekturen och installation av komponenter måste också dokumenteras.
+  Dokumentation av arkitekturen finns i begränsad mån i detta dokument i
+  dagsläget, men bör migreras till ett separat dokument och göras mer
+  fullständig.
+
+  Detta är deliverable 3.  Rubrikerna *Dokumentation* och *Träning* är nya i
+  denna revision, och dokumentet har i allmänhet reviderats och uppdaterats
+  för att matcha förändringar i projektets förlopp och utveckling.
+
+
+## Träning
+
+  Vårt projekt involverar två sorters användare: de som installerar lamporna
+  och bestämmer vad som visas, och slutanvändare som interagerar med
+  installationen genom spel via en spelfrontend.  Det senare är
+  förhoppningsvis intuitivt (spelarna antas känna till reglerna för tre-i-rad
+  och fyra-i-rad).  Den förstnämnda gruppen behöver dock någon form av guide,
+  inte minst för installationen av lampor.  Det nuvarande systemet för
+  installation är temporärt; vi planerar att dokumentera uppsättningsprocessen
+  när vi har fått ett bättre system på plats.  Även hur man ställer in
+  animation och väljer spel bör dokumenteras, men för detta ändamål bör det
+  räcka med en relativt kort hjälptext i själva gränssnittet.
 
 
 # Appendix A: Skisser
