@@ -43,6 +43,14 @@
   * Videoström av byggnaden som spelklienter kan se.
 
 
+## Proof-of-concept
+
+  En demonstration av spelet tic-tac-toe demonstrerades den 29e januari i KTHs
+  lokaler på en fasad med nio fönster efter önskemål från kund utav detta.
+  Detta demo bekräftar att projektidén med lampor i fönster fungerar som
+  tänkt.
+
+
 ## Roller
 
   * Projektledare: Emil
@@ -105,6 +113,11 @@
     - Möjlighet att använda GIF
     - Design av eget filformat?
     - Inbäddning av videoström i spelfrontend
+
+  * Dokumentera
+    - Lampinstallation
+    - Projektets arkitektur (separat)
+    - Installation av komponenter
 
 
 ### Beroendegraf mellan komponenter
@@ -249,6 +262,8 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   kunna kommunicera med någon server som är kopplad till en kamera.  Detta är
   tänkt att ske via en streamingtjänst, exempelvis Bambuser.
 
+
+### Arkitekturdiagram
 
   ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.svg)
 
