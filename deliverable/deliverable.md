@@ -1,5 +1,12 @@
- SMAB: Statusrapport 7/2
-=========================
+ SMAB: Statusrapport 13/2
+==========================
+
+## Changelog
+
+  * 7/2:  reviderade dokumentet för att matcha förändringar i projektets
+          utveckling och förlopp. (Jonas, John, Emil)
+  * 13/2: lade till rubrikerna *Dokumentation* och *Träning*, justerade
+          formuleringar och lade till skisser.
 
 
 ## Sales pitch
@@ -265,7 +272,7 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
 
 ### Arkitekturdiagram
 
-  ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.svg)
+  ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.png)
 
 
 ## Risker
@@ -293,10 +300,6 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   Dokumentation av arkitekturen finns i begränsad mån i detta dokument i
   dagsläget, men bör migreras till ett separat dokument och göras mer
   fullständig.
-
-  Detta är deliverable 3.  Rubrikerna *Dokumentation* och *Träning* är nya i
-  denna revision, och dokumentet har i allmänhet reviderats och uppdaterats
-  för att matcha förändringar i projektets förlopp och utveckling.
 
 
 ## Träning
