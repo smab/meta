@@ -37,6 +37,7 @@
 ## Förutsättningar (externa)
 
   * Vi måste använda lampor (troligtvis Hue) som ska belysa fönstren inifrån.
+    - Kunden måste tillhandahålla hårdvara att arbeta med
   * Interaktiv display.
   * Kösystem för spelare när de väntar.
   * Videoström av byggnaden som spelklienter kan se.
@@ -53,15 +54,6 @@
   * Utveckling: Alla
 
 
-## Utvecklingsmetod
-
-  Vi har bestämt oss för att jobba enligt den agila utvecklingsmetoden Scrum
-  efter att ha jämfört olika metoder gäntemot varandra och mot de
-  förutsättningar som gruppen har.  Detta beslut grundar sig på jämförelsen på
-  http://www.nada.kth.se/~karlm/mvk/mvk09_lec3.pdf, som vi tycker verkar vara
-  en tillförlitlig källa.
-
-
 ## Gruppmedlemmar
 
    Namn                   | Mail
@@ -75,6 +67,20 @@
    Markus Videll          | mvidell@kth.se
    Tomas Wickman          | tomaswic@kth.se
    Emil Öhman             | emiloh@kth.se
+
+
+## Utvecklingsmetod
+
+  Vi har bestämt oss för att jobba enligt den agila utvecklingsmetoden Scrum
+  efter att ha jämfört olika metoder gäntemot varandra och mot de
+  förutsättningar som gruppen har.  Detta beslut grundar sig på jämförelsen på
+  http://www.nada.kth.se/~karlm/mvk/mvk09_lec3.pdf, som vi tycker verkar vara
+  en tillförlitlig källa.
+
+  Vi har valt att använda väldigt korta sprints för att få mer finkornig
+  kontroll över vad som görs och snabbt kunna hantera problem som uppstår om
+  något tar längre tid än beräknat eller blir försenat.  Gruppmedlemmarna är
+  överens om att de snabbare sprintsen ger ökad effektivitet i arbetet.
 
 
 ## Planering
@@ -127,7 +133,7 @@ Planeringen är preliminär, och är tänkt att ta hänsyn till vilka uppgifter 
 beror på vilka, och potentiella risker som är associerade med olika moment.
 
 
-## Research
+## Forskning
 
   Vi har satt upp en gemensam testplats och en testrigg med nio lampor.
   Riggen är i KTHs lokaler, och vi har satt upp en kamera som streamar
@@ -218,7 +224,7 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
       mönster, ex. rad för rad och kolumn för kolumn.
 
 
-## Teknologi/arkitektur
+## Teknologi och arkitektur
 
   Vår applikation har två sorters användare: dels vår klient, som behöver kunna
   skapa animationer etc., och dels vanliga personer som ansluter via en
@@ -245,6 +251,34 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
 
 
   ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.svg)
+
+
+## Dokumentation
+
+  Dokumentation av kodbasen görs successivt under utvecklingen, så att
+  framtida utvecklare kan ta över och fortsätta projektet.  Själva
+  arkitekturen och installation av komponenter måste också dokumenteras.
+  Dokumentation av arkitekturen finns i begränsad mån i detta dokument i
+  dagsläget, men bör migreras till ett separat dokument och göras mer
+  fullständig.
+
+  Detta är deliverable 3.  Rubrikerna Dokumentation och Träning är nya i denna
+  revision, och dokumentet har i allmänhet reviderats och uppdaterats för att
+  matcha förändringar i projektets förlopp och utveckling.
+
+
+## Träning
+
+  Vårt projekt involverar två sorters användare: de som installerar lamporna
+  och bestämmer vad som visas, och slutanvändare som interagerar med
+  installationen genom spel via en spelfrontend.  Det senare är
+  förhoppningsvis intuitivt (spelarna antas känna till reglerna för tre-i-rad
+  och fyra-i-rad).  Den förstnämnda gruppen behöver dock någon form av guide,
+  inte minst för installationen av lampor.  Det nuvarande systemet för
+  installation är temporärt; vi planerar att dokumentera uppsättningsprocessen
+  när vi har fått ett bättre system på plats.  Även hur man ställer in
+  animation och väljer spel bör dokumenteras, men för detta ändamål bör det
+  räcka med en relativt kort hjälptext i själva gränssnittet.
 
 
 ## Risker
