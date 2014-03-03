@@ -7,6 +7,8 @@
           utveckling och förlopp. (Jonas, John, Emil)
   * 13/2: lade till rubrikerna *Dokumentation* och *Träning*, justerade
           formuleringar och lade till skisser.
+  * 3/3:  Updaterade research delen genom att lägga till vad vi efterforskat om 
+          gif-parsers och livestreamingtjänster.
 
 
 ## Sales pitch
@@ -134,8 +136,9 @@
 
 ### Milstolpar (och tidsplan)
 
-Resterande milstolpar under projektets gång redovisas nedan.  Milstolparna
-MS1 och MS2 har redan uppnåtts.
+Milstolpar under projektets gång redovisas nedan.  Milstolparna
+MS1 och MS2 har uppnåtts under tidigt skede i projektet och visas därmed ej
+nedan.
 
 * MS3 (Februari 2014)
   - [lampor] Lampserver kan styra bryggor och lampor för att ändra specifika
@@ -176,14 +179,60 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
   höga belastningar samt bra inbyggt stöd för tekniker så som websockets som
   vi ämnar att använda.
 
-  Vi har börjat undersöka idén att använda GIF-animationer för lagring av våra
+  Vi har arbetat med idén att använda GIF-animationer för lagring av våra
   animationer, där tanken är att vi slipper skriva ett eget verktyg för att
-  skapa animationer om det redan finns kompetenta sådana.  Istället tänker vi
-  lägga större vikt på lampserverkomponenten och att få animationer att
-  synkroniseras bra.  Vi har kollat på ett par olika animationsverktyg och
-  konstaterat att det verkar finnas tillräckligt bra sådana tillgängliga.  En
-  del tekniska bekymmer kvarstår, så som skillnaden på färgspektrum för GIF
-  och våra Hue-lampor.  Vidare studier inom detta område behöver göras.
+  skapa animationer då det redan finns kompetenta sådana som vi funnit efter 
+  en del efterforskningar.  Istället tänker vi lägga större vikt på 
+  lampserverkomponenten och att få animationer att synkroniseras bra.  Vi har
+  kollat på ett par olika animationsverktyg och konstaterat att det verkar
+  finnas tillräckligt bra sådana tillgängliga. En del tekniska bekymmer 
+  kvarstår, så som skillnaden på färgspektrum för GIF och våra Hue-lampor.
+  Vi har hittat gif-verktyg som verkar passa våra behov bra. Då det enda vi
+  egenligen eftersöker är ett enkelt gränssnitt för att skapa simpla animationer
+  så spelar det inte så stor roll om det saknar en del funktionalitet. Likt
+  livstreamingtjänsen så kommer det i slutändan inte vara vi som kommer behöva tilhandahålla
+  ett gifanimeringsverktyg utan vi ska bara tillföra möjligheten att kunna ladda upp gifanimationer
+  till servern så att denna spelar upp animationen till lamporna. Vi har dock genomfört en
+  del forskning inom verktyg och kommit fram till att Asesprite verkar som ett lämpligt verktyg
+  för att utföra de tester som vi behöver utföra. Det är dessutom
+  släppt med öppen källkod på programmet vilket vi tycker är ett plus.
+  
+  Vi har diskuterat olika livestreamingtjänster inom gruppen som verkar 
+  lämpliga, men det är svårt att dra några slutsater i detta skede då det 
+  ligger utanför våran arbetsbeskrivning att implementera en streamingtjänst.
+  Men att på ett enkelt sätt tillhandahålla möjligheten att implementera en 
+  livestreaming på våran hemsida känns som en relevant och överkomlig uppgift.
+  
+  De livestreamingtjänster som vi diskuterat inom gruppen är som följer med sin för/nackdelar:
+  
+  XSplit*
+  -Betallösning
+  -Endast Windows
+
+  OBS (Open Broadcaster Sowftware)*
+  -Gratis
+  -Windows, Linux kommer släppas
+
+  FFSplit*
+  -Gratis
+  -Windows
+
+  Wirecast
+  -Betallösning
+  -Windows, Macintosh
+
+  FFmpeg
+  -Gratis
+  -Windows, Macintosh, Linux
+  -Kommandorad
+  -Massa bra info, bla om tidsfördröjning och hur man kopplar ihop med twitch. https://
+   trac.ffmpeg.org/wiki/StreamingGuide
+ 
+ Simple Screen Recorder
+ -Gratis
+ -http://www.maartenbaert.be/simplescreenrecorder/live-streaming/
+ -Kommandorad, och vanligt
+ -Kan vara buggigt
 
 
 ## Scenarier, krav och behov
