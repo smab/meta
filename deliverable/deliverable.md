@@ -7,15 +7,20 @@
           utveckling och förlopp. (Jonas, John, Emil)
   * 13/2: lade till rubrikerna *Dokumentation* och *Träning*, justerade
           formuleringar och lade till skisser.
-  * 3/3:  Updaterade research delen genom att lägga till vad vi efterforskat om 
+  * 3/3:  uppdaterade research delen genom att lägga till vad vi efterforskat om 
           gif-parsers och livestreamingtjänster.
-
+  * 3/3:  uppdaterade research om Gif-parser, streamingtjänst samt räckvidd på
+    	  hue-lamporna samt deras bryggor.
+  * 7/3:  drygade ut de olika texterna.
+  * 10/3: la till länkar och redigerade demo 2 samt hue-testet. La in
+    	  placeholder för MS 5 i april.
 
 ## Sales pitch
 
   Playhouse är ett projekt som går ut på att göra om en byggnad till en stor
   interaktiv display där man kan visa såväl animationer som spela enklare spel
-  genom ett webbgränssnitt.
+  genom ett webbgränssnitt. På så sätt kan företag uppmärksamma sina byggnader
+  på ett innovativt sätt och användare får delta på ett unikt sätt.
 
 
 ## Projektbeskrivning
@@ -58,6 +63,10 @@
   lokaler på en fasad med nio fönster efter önskemål från kund utav detta.
   Detta demo bekräftar att projektidén med lampor i fönster fungerar som
   tänkt.
+  Ytterligare en demonstration presenterades den 6e mars där kunden fick se
+  framstegen vi gjort både på front-end och indirekt även back-end. Tic-tac-
+  toe demonstrerades återigen, tillsammans med animationskapaciteten och 
+  konfigurationsgränssnittet där man lägger till och testar bryggor.
 
 
 ## Roller
@@ -94,11 +103,16 @@
   http://www.nada.kth.se/~karlm/mvk/mvk09_lec3.pdf, som vi tycker verkar vara
   en tillförlitlig källa.
 
-  Vi har valt att använda väldigt korta sprints för att få mer finkornig
+  Vi har valt att använda väldigt korta sprinter för att få mer finkornig
   kontroll över vad som görs och snabbt kunna hantera problem som uppstår om
   något tar längre tid än beräknat eller blir försenat.  Gruppmedlemmarna är
-  överens om att de snabbare sprintsen ger ökad effektivitet i arbetet.
-
+  överens om att de snabbare sprinter ger ökad effektivitet i arbetet.
+  
+  Under projektets gång förkortade vi sprinterna ytterligare. Inledningsvis
+  arbetade vi med veckolånga sprinter, något vi senare kortade ner ytterligare
+  då vi ansåg att arbetsbördan blev för liten. Beroende på arbetsuppgifter
+  arbetar vi i sprinter som är mellan 4-7 dagar långa för att få en så 
+  bra tid/resultat ratio som möjligt.
 
 ## Planering
 
@@ -111,11 +125,13 @@
     - API för spelmoduler
     - Implementera tic-tac-toe som spelmodul
     - Implementera fyra-i-rad
+    - Implementera animationsmöjligheter
 
   * Utveckla spelfrontend
     - Sätta upp websocket-kommunikation
 
   * Utveckla kösystem
+    - Motverka botar
 
   * Utvärdera
     - Lampteknik (lampräckvidd mm)
@@ -132,7 +148,6 @@
 ### Beroendegraf mellan komponenter
 
   ![Komponentberoendegraf](https://github.com/smab/meta/raw/master/deliverable/task-dependencies.png)
-
 
 ### Milstolpar (och tidsplan)
 
@@ -152,18 +167,14 @@ nedan.
     möjlighet att spara inställningar till server.
   - [frontend] Fungerande spelgränssnitt, frontend klar.
 
+* MS5 (April 2014)
+  - [generellt] Bugfix?
+
 Planeringen är preliminär, och är tänkt att ta hänsyn till vilka uppgifter som
 beror på vilka, och potentiella risker som är associerade med olika moment.
 
 
 ## Forskning
-
-  Vi har satt upp en gemensam testplats och en testrigg med nio lampor.
-  Riggen är i KTHs lokaler, och vi har satt upp en kamera som streamar
-  lampornas status.  Tellsticktekniken återanvänds för att kontrollera
-  eltillförseln till riggen, så att lamporna kan stängas av när de inte
-  används.  Lamporna kan kontrolleras utifrån, vilket gör det möjligt att
-  testa ändringar utifrån.
 
   Efter att ha utvärderat Hue-lamporna så har vi kommit fram till att dessa är
   betydligt bättre lämpade för vårt ändamål än tekniken Tellstick.  Fördelar
@@ -173,11 +184,127 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
   för att kommunicera med Hues lampservrar över HTTP via deras REST-API som
   använder JSON.
 
-  Som nämndes ovan så implementeras webbackenden i Python, mer specifikt har
-  vi bestämt oss för webbserverbiblioteket Tornado.  Detta beslut grundar sig
-  på att Tornado enligt jämförelser och designfilosofi har som mål att klara
-  höga belastningar samt bra inbyggt stöd för tekniker så som websockets som
-  vi ämnar att använda.
+  Vi har satt upp en gemensam testplats och en testrigg med nio hue-lampor.
+  Riggen är i KTHs lokaler, och vi har satt upp en kamera som streamar
+  lampornas status.  Tellsticktekniken återanvänds för att kontrollera
+  eltillförseln till riggen, så att lamporna kan stängas av när de inte
+  används.  Lamporna kan kontrolleras utifrån, vilket gör det möjligt att
+  testa ändringar utifrån.
+
+  Vi har börjat undersöka idén att använda GIF-animationer för lagring av våra
+  animationer, där tanken är att vi slipper skriva ett eget verktyg för att
+  skapa animationer om det redan finns kompetenta sådana.  Istället tänker vi
+  lägga större vikt på lampserverkomponenten och att få animationer att
+  synkroniseras bra.  Vi har kollat på ett par olika animationsverktyg och
+  konstaterat att det verkar finnas tillräckligt bra sådana tillgängliga.  En
+  del tekniska bekymmer kvarstår, så som skillnaden på färgspektrum för GIF
+  och våra Hue-lampor.  Vidare studier inom detta område behöver göras.
+
+## Forskning: Backend
+   
+   När vi inledningsvis diskuterade vilka språk som vi skulle använda för de
+   olika delarna i projektet så var det främst python som förespråkades.
+   Då det var få av oss som hade några krav på vilket språk som skulle
+   användas och några gruppmedlemmar dessutom hade goda kunskaper inom python
+   så valde vi just detta för backend. Därefter påbörjade vi efterforskningar
+   för att hitta ett lämpligt bibliotek för backenden, där krav låg på att
+   hantera många bryggor och aktiva anslutningar.
+   Tre gruppmedlemmar undersökte lika många bibliotek som vi gemensamt hade
+   diskuterat fram som lämpliga: Django, CherryPy samt Tornado.
+   
+   Django bygger på designmönstret Model-View-Controller och kommer på
+   förhand med diverse användbara applikationer och egenskaper. Till exempel
+   så är det rekommenderat att låta Django bygga skalet för hemsidan, något
+   som görs automatiskt. Därefter utvecklar man sidan i ett pythonliknande
+   templatingspråk. Därtill skapas en adminkonsol som fungerar som ett sorts
+   CMS, något som underlättar vid frekvent modelering av innehåll.
+   Däremot tror vi inte att dessa funktioner är nödvändiga eller ens 
+   lämpliga för vårt projekt.
+      
+   Det andra biblioteket som vi undersökte och till sist valde var Tornado.
+   Detta beslut grundar sig på att Tornado enligt jämförelser och
+   designfilosofi har som mål att klara höga belastningar samt bra inbyggt 
+   stöd för tekniker så som websockets som
+   vi ämnar att använda.
+
+   Det sista alternativet vi undersökte var CherryPy. Biblioteket i sig
+   var lättanvänt, till exempel så kunde man definiera flera funktioner i
+   varje klass och sedan anropa dessa via URL:en /funktionsnamn. Detta i 
+   motsats till Tornado där varje klass måste vara i en egen fil och man
+   anropade dess klass-URL istället. Dock så hade inte CherryPy ett inbyggt
+   stöd för websockets, något som gjorde att vi rankade Tornado högre.
+
+
+## Forskning: Räckvidd på Hue-lampor
+   
+   För att klargöra eventuella problem i driftsatt tillstånd testade vi Hue-
+   lampornas räckvidd vid olika scenarion. Detta genomfördes på KTH som har
+   relativt tjocka betongväggar på ca 50 cm och likartade golv.
+   Testet utgick ifrån ett script som fick lamporna tillhörande en brygga att
+   blinka en gång varannan sekund i en klarblå nyans. Därefter undersökte vi
+   räckvidden från brygga till lampa under följande scenarion:
+
+   * Utan hinder 
+   * Antal väggar
+   * Antal golv
+   * Antal golv och väggar 
+
+   När en lampa (A) inte fungerade testade vi också att sätta en annan lampa (B)
+   mellan A och bryggan, för att på så sätt att repeater-delen fungerar bra. Med
+   repeaterdelen  vill vi i framtiden också testa gruppfunktionaliteten, se så
+   att man fortfarande kan få dem att blinka synkat.
+   Dessvärre kunde vi inte testa lamporna genom golv mer än vad som redan 
+   gjorts under demot den 29.e januari. Detta för att det inte gick att flytta 
+   på bryggorna och få internetanslutning på den nya platsen. Detta berodde 
+   förmodligen på att de fick en annan ip adress än den vi skickade våra 
+   meddelanden till, något som kanske berodde på KTH:s nätverksstruktur.
+   
+   Resultatet av de övriga testerna var någorlunda hoppfulla för vårt ändamål.
+   Sedan tidigare visst vi att bryggan klarar av att skicka sina signaler genom
+   KTH:s golv. Även genom en vägg fungerade väl, men vi märkte direkt att
+   ytterligare obstruktion gjorde att signalerna förlorades antingen periodvis
+   eller fullständigt. 
+   Därefter fortsatte vi genom att testa repeatereffekten hos hue-lamporna. 
+   Utan hinder så kunde vi konstatera att varje lampa kunde skicka signalen
+   cirka 20 meter utan att några fördröjningar uppstod. Längre än så kunde man
+   inte garantera synkroniserat blinkande.
+   Därefter fortsatte vi genom att testa hue-lampornas repeatereffekt genom
+   väggar. 
+   //TODO fortsätta
+
+
+   Det som kvarstår att testa är således hur många lampor man kan seriekoppla 
+   och eventuella delays som ett resultat av detta, samt att seriekoppla genom 
+   golv.
+   
+
+## Forskning: Gif-parser
+
+   För att hantera skapandet av animationer har vi valt att skapa gif-bilder
+   vid varje animationssteg för att sedan tolka dessa på ett sätt som
+   lamporna kan förstå. Det huvudsakliga resultatet ifrån denna efterforskning
+   ledde till användandet av pythonbiblioteket Pillow, en fork av PIL, som har
+   väl definierade metoder att nyttja för att implementera de funktioner
+   vi behöver.
+   Vår kravspec inkluderade att kunna:
+   * Läsa in en bild
+   * Byta frame
+   * Läsa in längd av en frame
+   * Observera en enskild pixel
+   * Hämta information från enskild pixel
+
+   Andra bibliotek som undersöktes inkluderade:
+   * Mahotas 
+   * Scikit-Image
+   * Insight Segmentation and Registration Toolkit(ltk) 
+   * OpenCV
+   * Medical image processing in Python (MedPy)
+
+   Då Pillow hade allt vi behövde och var enkelt att implementera blev det
+   ingen större debatt kring valet av bibliotek, utan vi implementerade en gif-
+   parser med hjälp av detta bibliotek.
+
+## Forskning: Stream-tjänster
 
   Vi har arbetat med idén att använda GIF-animationer för lagring av våra
   animationer, där tanken är att vi slipper skriva ett eget verktyg för att
@@ -188,14 +315,16 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
   finnas tillräckligt bra sådana tillgängliga. En del tekniska bekymmer 
   kvarstår, så som skillnaden på färgspektrum för GIF och våra Hue-lampor.
   Vi har hittat gif-verktyg som verkar passa våra behov bra. Då det enda vi
-  egenligen eftersöker är ett enkelt gränssnitt för att skapa simpla animationer
-  så spelar det inte så stor roll om det saknar en del funktionalitet. Likt
-  livstreamingtjänsen så kommer det i slutändan inte vara vi som kommer behöva tilhandahålla
-  ett gifanimeringsverktyg utan vi ska bara tillföra möjligheten att kunna ladda upp gifanimationer
-  till servern så att denna spelar upp animationen till lamporna. Vi har dock genomfört en
-  del forskning inom verktyg och kommit fram till att Asesprite verkar som ett lämpligt verktyg
-  för att utföra de tester som vi behöver utföra. Det är dessutom
-  släppt med öppen källkod på programmet vilket vi tycker är ett plus.
+  egenligen eftersöker är ett enkelt gränssnitt för att skapa simpla 
+  animationer så spelar det inte så stor roll om det saknar en del 
+  funktionalitet. Likt livstreamingtjänsen så kommer det i slutändan inte 
+  vara vi som kommer behöva tilhandahålla ett gifanimeringsverktyg utan vi 
+  ska bara tillföra möjligheten att kunna ladda upp gifanimationer till 
+  servern så att denna spelar upp animationen till lamporna. Vi har dock 
+  genomfört en del forskning inom verktyg och kommit fram till att Asesprite 
+  verkar som ett lämpligt verktyg för att utföra de tester som vi behöver 
+  utföra. Det är dessutom släppt med öppen källkod på programmet vilket vi 
+  tycker är ett plus.
   
   Vi har diskuterat olika livestreamingtjänster inom gruppen som verkar 
   lämpliga, men det är svårt att dra några slutsater i detta skede då det 
@@ -203,7 +332,8 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
   Men att på ett enkelt sätt tillhandahålla möjligheten att implementera en 
   livestreaming på våran hemsida känns som en relevant och överkomlig uppgift.
   
-  De livestreamingtjänster som vi diskuterat inom gruppen är som följer med sin för/nackdelar:
+  De livestreamingtjänster och program för inspelning som vi diskuterat inom 
+  gruppen är som följer med sin för/nackdelar:
   
   XSplit*
   -Betallösning
@@ -233,6 +363,18 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
  -http://www.maartenbaert.be/simplescreenrecorder/live-streaming/
  -Kommandorad, och vanligt
  -Kan vara buggigt
+
+ Livestream
+
+ Bambuser
+
+ Ustream
+
+ Justin.tv
+
+ Twitch
+
+ //TODO fortsätta här med, men lat
 
 
 ## Scenarier, krav och behov
@@ -322,6 +464,7 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
 ### Arkitekturdiagram
 
   ![Komponentdiagram](https://github.com/smab/meta/raw/master/deliverable/component_diagram.png)
+  ![Motsvarande i .svg-format](https://docs.google.com/file/d/0B4acd1MFyToeSkdFRmhEdWFGSkE/edit?pli=1)
 
 
 ## Risker
@@ -374,6 +517,8 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
 
   ![Konfiguration](https://github.com/smab/meta/raw/master/deliverable/images/sketch-config.png)
 
+  Det aktuella konfigurationsgränssnittet:
+  ![Konfiguration](https://docs.google.com/file/d/0BzIvZvWH3LulQ2VYSW9VT3FicEk/edit?pli=1)
 
 ## Spel
   Vi har just nu flera idéer på hur spelgränssnittet kan se ut.  Skisser på
@@ -382,3 +527,8 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   ![Spelfrontend: förslag 1](https://github.com/smab/meta/raw/master/deliverable/images/sketch-game-1.png)
 
   ![Spelfrontend: förslag 2](https://github.com/smab/meta/raw/master/deliverable/images/sketch-game-2.jpg)
+
+  Det aktuella spelgränssnittet:
+  ![Spelfrontend: körbart](https://docs.google.com/file/d/0BzIvZvWH3LulQUl5ak5vUFlFVk0/edit?pli=1)
+
+  //TODO lägga in bilder i github
