@@ -518,7 +518,7 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   ![Konfiguration](https://github.com/smab/meta/raw/master/deliverable/images/sketch-config.png)
 
   Det aktuella konfigurationsgränssnittet:
-  ![Konfiguration](https://docs.google.com/file/d/0BzIvZvWH3LulQ2VYSW9VT3FicEk/edit?pli=1)
+  ![Konfiguration](https://github.com/smab/meta/blob/master/deliverable/sepdata1.png)
 
 ## Spel
   Vi har just nu flera idéer på hur spelgränssnittet kan se ut.  Skisser på
@@ -529,6 +529,4 @@ Se även tidigare avsnitt om projektets externa förutsättningar.
   ![Spelfrontend: förslag 2](https://github.com/smab/meta/raw/master/deliverable/images/sketch-game-2.jpg)
 
   Det aktuella spelgränssnittet:
-  ![Spelfrontend: körbart](https://docs.google.com/file/d/0BzIvZvWH3LulQUl5ak5vUFlFVk0/edit?pli=1)
-
-  //TODO lägga in bilder i github
+  ![Spelfrontend: aktuella](https://github.com/smab/meta/blob/master/deliverable/sepdata2.png)
