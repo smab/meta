@@ -14,6 +14,8 @@
   * 7/3:  drygade ut de olika texterna.
   * 10/3: la till länkar och redigerade demo 2 samt hue-testet. La in
     	  placeholder för MS 5 i april.
+  * 23/3 La till lite information om de olika streamingtjänsterna och deras prisplaner samt pillade lite
+         på milstolpe 5
 
 ## Sales pitch
 
@@ -168,7 +170,8 @@ nedan.
   - [frontend] Fungerande spelgränssnitt, frontend klar.
 
 * MS5 (April 2014)
-  - [generellt] Bugfix?
+  - [generellt] Bugfixa skriven kod
+  - [generellt] Kommentera skriven kod
 
 Planeringen är preliminär, och är tänkt att ta hänsyn till vilka uppgifter som
 beror på vilka, och potentiella risker som är associerade med olika moment.
@@ -334,47 +337,67 @@ beror på vilka, och potentiella risker som är associerade med olika moment.
   
   De livestreamingtjänster och program för inspelning som vi diskuterat inom 
   gruppen är som följer med sin för/nackdelar:
-  
-  XSplit*
-  -Betallösning
-  -Endast Windows
 
-  OBS (Open Broadcaster Sowftware)*
-  -Gratis
-  -Windows, Linux kommer släppas
+Dessa program används till att streama  
 
-  FFSplit*
-  -Gratis
-  -Windows
+  * XSplit
+   - Betallösning
+   - Endast Windows
 
-  Wirecast
-  -Betallösning
-  -Windows, Macintosh
+  * OBS (Open Broadcaster Sowftware)
+   - Gratis
+   - Windows, Linux kommer släppas
+ 
+  * FFSplit
+   - Gratis
+   - Windows
 
-  FFmpeg
-  -Gratis
-  -Windows, Macintosh, Linux
-  -Kommandorad
-  -Massa bra info, bla om tidsfördröjning och hur man kopplar ihop med twitch. https://
+  * Wirecast
+   - Betallösning
+   - Windows, Macintosh
+
+  * FFmpeg
+   - Gratis
+   - Windows, Macintosh, Linux
+   - Kommandorad
+   - Massa bra info, bla om tidsfördröjning och hur man kopplar ihop med twitch. https://
    trac.ffmpeg.org/wiki/StreamingGuide
  
- Simple Screen Recorder
- -Gratis
- -http://www.maartenbaert.be/simplescreenrecorder/live-streaming/
- -Kommandorad, och vanligt
- -Kan vara buggigt
+ * Simple Screen Recorder
+  - Gratis
+  - http://www.maartenbaert.be/simplescreenrecorder/live-streaming/
+  - Kommandorad, och vanligt
+  - Kan vara buggigt
 
- Livestream
+Följande företag tillhandahåller streamingtjänster
 
- Bambuser
+ * Livestream
+  - Gratis men med möjlighet att betala för mer tjänster.
+  Dessa verkar dock mest ha att göra med att man far tillgång till deras
+  videoredigeringsverktyg
+  - http://new.livestream.com/plans
 
- Ustream
+ * Bambuser
+  - Har gratis alternativ som inte är ett alternativ för våran applikation
+  - Kostnaden hänger ihop med hur många tittartimmar som man vill köpa
+  och överstiger man dessa timmar sa kostar det extra per timma
+  - http://bambuser.com/premium
 
- Justin.tv
+ * Ustream
+  - Gratisalternativ for privatpersoner
+  - Baserar sig ocksa pa tittartimmar
+  - För deras 'Enterprise' prisplan far man kontakta dem
+  - https://www.ustream.tv/platform/plans#itm_source=footer&itm_medium=plans_pricing_link&itm_content=Plans_and_Pricing&itm_campaign=footer
 
- Twitch
-
- //TODO fortsätta här med, men lat
+ * Justin.tv
+  - Baserar sig på tittartimmar
+  - även dessa har ett enterprisealternativ
+  - http://www.justin.tv/payments/premium/
+ 
+ * Twitch
+  - Verkar rätt nischat på spel
+  - Har ingen riktig betalplan men man kan bli 'twitch partner' för diverse fördelar
+  - http://www.twitch.tv/p/partnersvideo
 
 
 ## Scenarier, krav och behov
