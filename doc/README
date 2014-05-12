@@ -1,0 +1,3 @@
+In order to build the documentation, make sure that meta,
+playhouse-lights and playhouse-web are all cloned into
+the same directory and then run the Makefile.
