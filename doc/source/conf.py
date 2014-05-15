@@ -266,6 +266,7 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"tornado": ('http://www.tornadoweb.org/en/stable/', None)}
+intersphinx_mapping = {"tornado": ('http://www.tornadoweb.org/en/stable/', None),
+                       "python": ("http://docs.python.org/3", None)}
 
 autodoc_member_order = "bysource"

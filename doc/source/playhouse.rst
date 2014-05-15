@@ -3,6 +3,11 @@
 
 .. automodule:: playhouse
 
+
+Bridge management
+-----------------
+
+
 .. autoclass:: Bridge
    :members:
 
@@ -45,4 +50,18 @@
 .. autoclass:: LightGrid
    :members:
 
+   .. automethod:: __init__
+
 .. autofunction:: discover
+
+
+Exception classes
+-----------------
+
+Hue API errors
+^^^^^^^^^^^^^^
+
+.. autoexception:: HueAPIException
+
+Other errors
+^^^^^^^^^^^^
