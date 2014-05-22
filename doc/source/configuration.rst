@@ -17,7 +17,7 @@ The configuration file
 ----------------------
 
 
-Everything under Setup and Settings can also be changed manually in ``config.json``.
+Everything under :ref:`setup` and :ref:`settings` can also be changed manually in ``config.json``.
 
 Attributes
 ^^^^^^^^^^
@@ -39,9 +39,12 @@ Attributes
 
 
 The configuration interface 
------------------------
+---------------------------
 
 The configuration interface helps you configure your installation, without having to change the configuration file. 
+
+
+.. _setup: 
 
 Setup 
 ^^^^^
@@ -56,6 +59,8 @@ This page contains settings for connections and external services. Some of setti
 
 Note: Do not use the same port for game and config or the game interface will not be able to start.
 
+
+.. _settings: 
 
 Settings 
 ^^^^^^^^
