@@ -7,6 +7,11 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{geometry}
+\usepackage{footnote}
+\usepackage{appendix}
+
+
+\setcounter{tocdepth}{2}
 
 
 %--- fancyhdr -------------------------
@@ -54,7 +59,7 @@
 
 \begin{minipage}[t]{0.4\textwidth}
   \begin{flushleft} \large
-    \emph{Author:}\\
+    \textbf{Author}\\
      John \textsc{Eriksson}          \\
      Arvid \textsc{Fahlström Myrman} \\
      Jonas \textsc{Höglund}          \\
@@ -68,12 +73,12 @@
 \end{minipage}
 \begin{minipage}[t]{0.4\textwidth}
   \begin{flushright} \large
-    \emph{Supervisor:}\\
+    \textbf{Supervisor}\\
     Björn \textsc{Thuresson}
   \end{flushright}
 \end{minipage}
 
-\vspace{1cm}
+\vspace{2cm}
 
 \section*{Beskrivning}
   \begin{flushleft}
@@ -97,10 +102,10 @@
 \end{titlepage}
 
 \pagebreak
-\section*{Changelog}
+\section*{Historik}
   \begin{description}
     \item[7/2]  reviderade dokumentet för att matcha förändringar i projektets
-                utveckling och förlopp. (Jonas, John, Emil)
+                utveckling och förlopp.
     \item[13/2] lade till avsnitten \emph{Dokumentation} och
                 \emph{Träning}, justerade formuleringar och lade till
                 skisser.
@@ -113,6 +118,7 @@
                 placeholder för MS 5 i april.
     \item[23/3] la till lite information om de olika streamingtjänsterna och
                 deras prisplaner samt uppdaterade milstolpe 5.
+    \item[22/5] förberedde sista utkastet.
   \end{description}
 
 \pagebreak
@@ -274,7 +280,9 @@
 
 \subsection{Beroendegraf mellan komponenter}
 
-  \includegraphics[width=\textheight,angle=90]{task-dependencies.png}
+  \begin{center}
+    \includegraphics[width=0.9\textheight,angle=90]{task-dependencies.png}
+  \end{center}
 % ![Komponentberoendegraf](https://github.com/smab/meta/raw/master/deliverable/task-dependencies.png)
 
 
@@ -679,6 +687,7 @@ Följande företag tillhandahåller streamingtjänster
 
 \section{Risker}
 
+  \begin{savenotes}
   \begin{tabular}{p{0.4\textwidth} p{0.4\textwidth} l l}
 
     {\bf Risk} & {\bf Åtgärd} & {\bf Sann.} & {\bf Impact} \\
@@ -753,6 +762,7 @@ Följande företag tillhandahåller streamingtjänster
      \hline
 
   \end{tabular}
+  \end{savenotes}
 
 \newpage
 \section{Dokumentation och träning}
@@ -778,8 +788,8 @@ Följande företag tillhandahåller streamingtjänster
   räcka med en relativt kort hjälptext i själva gränssnittet.
 
 
+\begin{appendices}
 \newpage
-\appendix
 \section{Skisser}
 
   I detta appendix inkluderas skisser på de olika gränssnitt olika typer av
@@ -829,5 +839,19 @@ Följande företag tillhandahåller streamingtjänster
 % ![Spelfrontend: aktuella](https://github.com/smab/meta/blob/master/deliverable/sepdata2.png)
 
 
+
+
+\newpage
+\section{Dokumentation: konfiguration}
+  Detta appendix innehåller dokumentation kring konfigurationen av en
+  installation av Playhouse.  Kapitlet är på engelska eftersom källkoden till
+  projektet ligger öppet allmänheten och dokumentationen då ska nå ut till så
+  många som möjlight som är intresserade av projektet.
+
+  Se \url{https://github.com/smab/playhouse-web/wiki/Configuration} för
+  senaste versionen av detta appendix.
+
+\input{docs/config.tex}
+\end{appendices}
 
 \end{document}
