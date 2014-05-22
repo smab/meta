@@ -1,0 +1,188 @@
+
+\subsection{Overview}
+The configuration interface can be reach as a webpage on
+\url{http://localhost:<config_port>/config} where the default port is 8081.
+
+There are six source files directly associated with this module, which can be
+found in the relevant directories:
+
+  \begin{description}
+    \item[config.py]
+     the main module source code, responsible for handling all requests in the configuration interface
+    \item[config\_base.html]
+     base template file
+    \item[config\_setup.html]
+     template file for Setup
+    \item[config\_game.html]
+     template file for Settings
+    \item[config\_bridges.html]
+     template file for Bridges
+  \end{description}
+
+\subsection{Configuration file}
+Everything under Setup and Settings can also be changed manually in
+\texttt{config.json}.
+
+\subsubsection{Attributes}
+  \begin{description}
+    \item[\texttt{game\_name}:] name of initial game module to start (default: \texttt{"default"})
+    \item[\texttt{game\_path}:] list of paths to where games can be found (default: \texttt{["src/games"]})
+    \item[\texttt{lampdest}:] address to lamp server (default: \texttt{"localhost"})
+    \item[\texttt{lampport}:] port to connect to lamp server (default: \texttt{4711})
+    \item[\texttt{serverport}:] port the game server will listen on (default: \texttt{8080})
+    \item[\texttt{configport}:] port the config server will listen on (default: \texttt{8081})
+    \item[\texttt{stream\_embedcode}:] HTML string with stream embed code (default: \texttt{""})
+    \item[\texttt{light\_ssl}:] set to \texttt{true} to connect to the lamp server with HTTPS
+    \item[\texttt{light\_certfile}:] only needed if \texttt{light\_ssl} is \texttt{true}
+    \item[\texttt{light\_pwd}:] password used to authorize with the lamp server
+    \item[\texttt{config\_ssl}:] when \texttt{true}, run config interface on a HTTPS server
+    \item[\texttt{config\_certfile}:] only needed if \texttt{config\_ssl} is \texttt{true}
+    \item[\texttt{config\_keyfile}:] only needed if \texttt{config\_ssl} is \texttt{true}
+    \item[\texttt{config\_pwd}:] when set, password needed to access config
+  \end{description}
+
+\subsection{Configuration interface}
+\subsubsection{Setup}
+
+This page contains settings for connections and external services.
+Some of settings may require that the server is restarted.
+
+\subsubsection{Connections}
+
+  \begin{description}
+
+    \item[Status]
+        Show the current connection status to the lamp server.
+    \item[Lamp server]
+        Address to the lamp server and what port to connect to. (default:
+        \texttt{localhost:4711})
+    \item[Game server port]
+        This is the port the web server that serves the game interface will
+        listen on. (default: \texttt{8080})
+    \item[Config server port]
+        This is the port the web server that serves the configuration
+        interface will listen on. (default: \texttt{8081})
+
+  \end{description}
+
+  Note: Do not use the same port for game and config or the game interface
+  will not be able to start.
+
+\subsection{Streaming}
+  \begin{description}
+    \item[Embed code]
+        The content in this text area will be inserted in the game interface
+        and is primarily for embedding a live stream player. (default:
+        \textit{empty})
+  \end{description}
+
+
+\subsubsection{Settings}
+This pages is used to change game and game settings.
+
+\subsubsection{Changing game}
+All games found in the game paths is listed to the left and the current game
+can be changed directly by clicking on any of the listed games.  Note:
+Changing game paths has to be done by editing \texttt{game\_paths} in the
+config file.
+
+\subsubsection{Game settings}
+Game settings are shown on the right and will show the config template
+specified by \texttt{config\_file} in the the running game module. For more
+information, see the documentation on game settings for each module.
+
+
+\subsection{Bridges}
+This menu handles all the Hue bridges that are used. It lists all bridges the
+lightserver knows about, sorted by their MAC-address.
+
+\subsubsection{Identifying Selected}
+By selecting bridges with the checkbox, you can tell the bridge to blink all
+the lamps associated with this bridge by pressing the "Identify Selected"
+button.
+
+\subsubsection{Valid username}
+Each Hue bridge needs a username. This acts like a password so unauthorized
+people cannot send commands to your lamps. Each bridge in the table has a
+property \texttt{valid\_username} which tells you if the lightserver knows about a
+valid username for that bridge. By clicking the property, you can tell the
+lightserver to generate a new username. A confirmation box will appear and you
+will have to physically  press the link button on the bridge before accepting.
+
+\subsubsection{Adding bridges}
+You can add a new bridge by writing its IP address in the textfield and
+pressing ``Add bridge.''
+
+\subsubsection{Removing bridges}
+You can remove bridges by select them with the checkboxes and then pressing
+``Remove Selected.''
+
+\subsubsection{Refresh List}
+A cached copy of the bridges will be saved on the webserver to decrease
+waiting time. If any changes happens to the bridges it will not be shown
+however. You can force a request for a new version by pressing the ``Refresh
+List'' button.
+
+\subsubsection{Search Bridges}
+If you know there are bridges on the same local network as the lightserver,
+you can have it search for them. It will do that by a broadcast message and by
+reading the Philips website. This search may take some time though and after
+about 20s you \textit{must} refresh the list by pressing the ``Refresh List''
+button.
+
+
+\subsection{Grid}
+
+This page is used to configure the lamp positions in the grid and the
+dimensions of the grid.  The grid overview shows the positions where lamps are
+placed and the status of those lamps.
+
+\subsubsection{Color coding (interface)}
+  \begin{description}
+    \item[white] no lamp placed
+    \item[blue]  a lamp is placed here and no errors found (note: the lamp
+                 server can't know if a lamp is reachable or not)
+    \item[red]   a lamp is placed here but there is no bridge with this lamp id
+  \end{description}
+
+\subsubsection{Color coding (lamps)}
+  \begin{description}
+    \item[white] activated lamp
+    \item[blue]  placed lamp
+    \item[red]   removed lamp
+  \end{description}
+
+\subsubsection{Placing lamps}
+Before placing the lamps, it is recommended to first turn off any running
+games. It can be done directly from the grid page by clicking on the ``Turn
+Off'' button.
+
+When you open the page, a lamp light up and then can you say which lamp was
+lit. This can be done either by clicking on the overview or manually enter the
+position and then click on ``Place Lamp''. Attempting to place a lamp on an
+occupied position will instead remove the currently placed lamp on that
+position and queue it for placement.
+
+\subsubsection{Changing size}
+Changing size is done by entering the dimensions as \texttt{widthxheight} and then
+click ``Change Size''.  Note: This will clear the grid and because of that the
+``Change Size''-button will be disabled to prevent loss of unsaved changes.
+Saving or refreshing will reenable the button.
+
+\subsubsection{Actions}
+  \begin{description}
+    \item[Save]             Send and use the grid on the lamp server.
+    \item[Refresh]          Discard the local grid and request the one currently used on the lamp server.
+    \item[Clear]            Clear the grid from placed lamps.
+    \item[Turn Off]         Cancel any running game and turn off all lamps.
+    \item[Run Diagnostics]  Run diagnosics to test the grid on the lamp server.
+  \end{description}
+
+\subsubsection{Errors}
+  \begin{description}
+    \item[No activated lamp]  there is either no more lamps available that isn't already placed
+    \item[Invalid position]   the position were in an incorrect format and couldn't be parsed be the server
+    \item[Invalid size]       the size were in an incorrect format and couldn't be parsed be the server
+    \item[Invalid lamp]       the placed lamp is no longer valid and can't be placed
+    \item[Saving failed]      given when the lamp server couldn't save the grid
+  \end{description}
