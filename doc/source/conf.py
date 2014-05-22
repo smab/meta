@@ -21,6 +21,7 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../../../playhouse-lights/src'))
 sys.path.insert(0, os.path.abspath('../../../playhouse-web/src'))
+sys.path.insert(0, os.path.abspath('sphinxext')) # autorest.py
 
 # -- General configuration ------------------------------------------------
 
@@ -35,6 +36,9 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
+    'sphinxcontrib.httpdomain',
+    'sphinxcontrib.autohttp.tornado',
+    'autorest'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
