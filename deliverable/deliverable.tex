@@ -1,8 +1,18 @@
 \documentclass[a4paper,11pt]{article}
 
-\usepackage[T1]{fontenc}
 \usepackage[swedish]{babel}
-\usepackage[utf8]{inputenc}
+
+\usepackage{ifxetex}
+
+\ifxetex
+  \usepackage{fontspec}
+  \usepackage{polyglossia}
+  \setmainlanguage{swedish}
+\else
+% \usepackage{libertine}
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\fi
 
 \usepackage{url}
 \usepackage{graphicx}
@@ -112,7 +122,7 @@
     \item[3/3]  uppdaterade researchdelen genom att lägga till vad vi
                 efterforskat om gif-parsers och livestreamingtjänster.
     \item[3/3]  uppdaterade research om Gif-parser, streamingtjänst samt
-                räckvidd på hue-lamporna samt deras bryggor.
+                räckvidd på hue-lamporna och deras bryggor.
     \item[7/3]  utvidgade olika avsnitt.
     \item[10/3] la till länkar och redigerade demo 2 samt hue-testet. La in
                 placeholder för MS 5 i april.
