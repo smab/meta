@@ -1,5 +1,7 @@
-Game creation and the game API
-==============================
+.. _gameapi: 
+
+Game API
+========
 
 This documentation gives an overview of how to use the game API (lightgames.py) in order to create a Playhouse game.
 

@@ -1,5 +1,8 @@
-The configuration interface
-===========================
+
+.. _config:
+
+Configuration
+=============
 
 The configuration interface can be reach as a webpage on ``http://localhost:<config_port>/config`` where the default port is ``8081``.
 
