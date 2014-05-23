@@ -21,6 +21,7 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../../../playhouse-lights/src'))
 sys.path.insert(0, os.path.abspath('../../../playhouse-web/src'))
+sys.path.insert(0, os.path.abspath('sphinxext')) # autorest.py
 
 # -- General configuration ------------------------------------------------
 
@@ -35,6 +36,9 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
+    'sphinxcontrib.httpdomain',
+    'sphinxcontrib.autohttp.tornado',
+    'autorest'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -93,6 +97,8 @@ default_role = "py:obj"
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+
+highlight_language = 'py3'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -190,13 +196,15 @@ htmlhelp_basename = 'playhousedoc'
 
 latex_elements = {
 # The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+'papersize': 'a4',
 
 # The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+'pointsize': '10pt',
 
 # Additional stuff for the LaTeX preamble.
-#'preamble': '',
+'preamble': '',
+
+'babel': '\\usepackage[english,swedish]{babel}'
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -204,7 +212,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'playhouse.tex', 'Playhouse Documentation',
-   'John Eriksson, Arvid Fahlström Myrman, Jonas Höglund, Hannes Leskelä, Christian Lidström, Mattias Palo, Markus Videll, Tomas Wickman, Emil Öhman', 'manual'),
+   r'John Eriksson\\Arvid Fahlström Myrman\\Jonas Höglund\\Hannes Leskelä\\Christian Lidström\\Mattias Palo\\Markus Videll\\Tomas Wickman\\Emil Öhman', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -270,3 +278,11 @@ intersphinx_mapping = {"tornado": ('http://www.tornadoweb.org/en/stable/', None)
                        "python": ("http://docs.python.org/3", None)}
 
 autodoc_member_order = "bysource"
+
+# remove the signature from class objects (shown in __init__ instead)
+def setup(app):
+    def process_signature(app, what, name, obj, options, signature, return_annotation):
+        if what == 'class':
+            return '', return_annotation
+
+    app.connect('autodoc-process-signature', process_signature)
