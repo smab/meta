@@ -6,36 +6,12 @@ The configuration interface can be reach as a webpage on ``http://localhost:<con
 There are six source files directly associated with this module, which can be
 found in the relevant directories:
 
-1. ``config.py``: the main module source code, responsible for handling all requests in the configuration interface
-2. ``config_base.html``: base template file
-3. ``config_setup.html``: template file for Setup
-4. ``config_game.html``: template file for Settings
-5. ``config_bridges.html`` template file for Bridges
-
-
-The configuration file
-----------------------
-
-
-Everything under :ref:`setup` and :ref:`settings` can also be changed manually in ``config.json``.
-
-Attributes
-^^^^^^^^^^
-
-* ``game_name`` - name of initial game module to start (default: ``"default"``)
-* ``game_path`` - list of paths to where games can be found (default: ``["src/games"]``)
-* ``lampdest`` - address to lamp server (default: ``"localhost"``)
-* ``lampport``-  port to connect to lamp server (default: ``4711``)
-* ``serverport`` - port the game server will listen on (default: ``8080``)
-* ``configport`` - port the config server will listen on (default: ``8081``)
-* ``stream_embedcode`` - HTML string with stream embed code (default: ``""``)
-* ``light_ssl`` - set to ``true`` to connect to the lamp server with HTTPS
-* ``light_certfile`` - only needed if ``light_ssl`` is ``true``
-* ``light_pwd`` - password used to authorize with the lamp server
-* ``config_ssl`` - when ``true``, run config interface on a HTTPS server
-* ``config_certfile`` - only needed if ``config_ssl`` is ``true``
-* ``config_keyfile`` - only needed if ``config_ssl`` is ``true``
-* ``config_pwd`` - when set, password needed to access config
+1. ``src/config.py``: the main module source code, responsible for handling all requests in the configuration interface
+2. ``templates/config_base.html``: base template file
+3. ``templates/config_setup.html``: template file for Setup
+4. ``templates/config_game.html``: template file for Settings
+5. ``templates/game/*``: template files for game settings 
+6. ``templates/config_bridges.html`` template file for Bridges
 
 
 The configuration interface 
@@ -134,6 +110,30 @@ Errors:
 * ``Saving failed``      given when the lamp server couldn't save the grid
 
 
+
+The configuration file
+----------------------
+
+
+Everything under :ref:`setup` and :ref:`settings` can also be changed manually in ``config.json``.
+
+Attributes
+^^^^^^^^^^
+
+* ``game_name`` - name of initial game module to start (default: ``"default"``)
+* ``game_path`` - list of paths to where games can be found (default: ``["src/games"]``)
+* ``lampdest`` - address to lamp server (default: ``"localhost"``)
+* ``lampport``-  port to connect to lamp server (default: ``4711``)
+* ``serverport`` - port the game server will listen on (default: ``8080``)
+* ``configport`` - port the config server will listen on (default: ``8081``)
+* ``stream_embedcode`` - HTML string with stream embed code (default: ``""``)
+* ``light_ssl`` - set to ``true`` to connect to the lamp server with HTTPS
+* ``light_certfile`` - only needed if ``light_ssl`` is ``true``
+* ``light_pwd`` - password used to authorize with the lamp server
+* ``config_ssl`` - when ``true``, run config interface on a HTTPS server
+* ``config_certfile`` - only needed if ``config_ssl`` is ``true``
+* ``config_keyfile`` - only needed if ``config_ssl`` is ``true``
+* ``config_pwd`` - when set, password needed to access config
 
 
 
